@@ -66,7 +66,12 @@ describe('parse-imports', function () {
     ["app", "foo", "bar"].forEach(function (dep) {
       assert.equal(result.length, 3);
       assert.notEqual(result.indexOf(dep), -1);
-    });       
+  });
+
+  it('should not parse url imports ', function () {
+    var scss = '@import url("http://www.an.external.css.stylesheet.css");';
+    var result = parseImports(scss);
+    assert.equal(result.length, 0);
   });
 
 
